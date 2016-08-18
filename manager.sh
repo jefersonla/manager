@@ -5,7 +5,7 @@ show_help(){
     printf "\t./manager-general.sh [option]\n"
     printf "\nOptions:\n"
     printf "\tinstall [app_name]\tInstall application\n"
-    printf "\download [app_name]\tDownload application binarie\n"
+    printf "\tdownload [app_name]\tDownload application binarie\n"
     printf "\thelp\t\t\tShow this help message\n"
     printf "\nApps available:\n"
     printf "\tall\t\tAll applications below\n"
