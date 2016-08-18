@@ -30,6 +30,25 @@ install_app(){
     "$DIR_NAME/manager-$APP_NAME.sh" install
 }
 
+download_app(){
+    if [ $# -ne 1 ];then
+        echo "App not specified"
+        exit 1
+    fi
+    APP_NAME=$1
+    echo "Configuring $APP_NAME..."
+    DIR_NAME="$(pwd)/$APP_NAME.man"
+    # If plugin is not prepared
+    if [ ! -e DIR_NAME ];then
+        # Create plugin folder and copy plugin installer
+        mkdir "$DIR_NAME"
+        cp "$(pwd)/plugins/manager-$APP_NAME.sh"
+    fi
+    # Executine routine to configure application
+    "$DIR_NAME/manager-$APP_NAME.sh" download
+}
+
+
 if [ $# -gt 2 ] || [ $# -eq 0 ];then
     show_help
     exit 1
@@ -54,6 +73,31 @@ case $1 in
                 ;;
             spring-ide)
                 install_app spring-ide
+                ;;
+            *)
+                show_help
+                exit 1
+                ;;
+        esac
+        ;;
+    download)
+        if [ $# -ne 2 ];then
+            show_help
+            exit 1
+        fi
+        case $2 in
+            all)
+                download_app java
+                download_app mysql
+                ;;
+            mysql)
+                download_app mysql
+                ;;
+            java)
+                download_app java
+                ;;
+            spring-ide)
+                download_app spring-ide
                 ;;
             *)
                 show_help
