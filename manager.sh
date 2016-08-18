@@ -52,8 +52,8 @@ case $1 in
             java)
                 install_app java
                 ;;
-            spring-tools)
-                install_app spring-tools
+            spring-ide)
+                install_app spring-ide
                 ;;
             *)
                 show_help
