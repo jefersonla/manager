@@ -26,7 +26,7 @@ install_app(){
     if [ ! -e DIR_NAME ];then
         # Create plugin folder and copy plugin installer
         mkdir "$DIR_NAME"
-        cp "$(pwd)/plugins/manager-$APP_NAME.sh"
+        cp "$(pwd)/plugins/manager-$APP_NAME.sh" "$DIRNAME"
     fi
     # Executine routine to install application
     "$DIR_NAME/manager-$APP_NAME.sh" install
@@ -44,7 +44,7 @@ download_app(){
     if [ ! -e DIR_NAME ];then
         # Create plugin folder and copy plugin installer
         mkdir "$DIR_NAME"
-        cp "$(pwd)/plugins/manager-$APP_NAME.sh"
+        cp "$(pwd)/plugins/manager-$APP_NAME.sh" "$DIRNAME"
     fi
     # Executine routine to configure application
     "$DIR_NAME/manager-$APP_NAME.sh" download
