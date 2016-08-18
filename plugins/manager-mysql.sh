@@ -7,6 +7,8 @@ VERSION=5.7.14
 DB_DATABASE=ufba
 DB_USER=ufba
 DB_PASS=ufba
+MYSQL_PLATFORM="x86_64"
+BASEURL="http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.14-linux-glibc2.5-x86_64.tar.gz"
 
 show_help(){
     printf "Manager for MYSQL Portable!\n"
@@ -21,7 +23,13 @@ show_help(){
     printf "\tconnect [user] [pass] [port]\tConnect with the specified user and password, default user\n"
     printf "\t\t\t\t\tis %s and default password is %s\n" "$DB_USER" "$DB_PASS"
     printf "\tchange-password [user] [pass]\tChange user password\n"
+    printf "\tdownload\t\t\t\tDownload binarie files"
     printf "\thelp\t\t\t\tShow this help message\n"
+}
+
+download_app(){
+    mkdir "$(pwd)/bin"
+    wget -O "$(pwd)/bin/mysql-""$VERSION""-linux-$MYSQL_PLATFORM.tar.gz" "$BASEURL"
 }
 
 if [ $# -eq 0 ] || [ $# -gt 4 ];then
@@ -41,15 +49,24 @@ case $1 in
         mkdir -p "$TARGET/var/run/mysql"
         mkdir -p "$TARGET/var/log/mysql"
         # Install mysql files
-        tar -zxvf "$(pwd)/mysql-""$VERSION""-linux-x86_64.tar.gz" -C "$TARGET"
-        mv "$TARGET/mysql-""$VERSION""-linux-x86_64"/* "$TARGET"
-        rmdir "$TARGET/mysql-""$VERSION""-linux-x86_64"
+        # If binarie files not exist
+        if [ ! -e "$(pwd)/bin" ] || [ ! -e "$(pwd)/bin/mysql-""$VERSION""-linux-$MYSQL_PLATFORM.tar.gz" ];then
+            download_app
+        fi
+        tar -zxvf "$(pwd)/bin/mysql-""$VERSION""-linux-$MYSQL_PLATFORM.tar.gz" -C "$TARGET"
+        mv "$TARGET/mysql-""$VERSION""-linux-$MYSQL_PLATFORM"/* "$TARGET"
+        rmdir "$TARGET/mysql-""$VERSION""-linux-$MYSQL_PLATFORM"
         # Initialize Database
         "$TARGET/bin/mysqld" --user="$USER" \
             --basedir="$BASEDIR" \
             --datadir="$DATADIR" \
             --initialize-insecure
         echo "Installed mysql-portable successfully!"
+        ;;
+    download)
+        if [ ! -e "$(pwd)/bin" ] || [ ! -e "$(pwd)/bin/mysql-""$VERSION""-linux-$MYSQL_PLATFORM.tar.gz" ];then
+            download_app
+        fi
         ;;
     run)
         if [ $# -eq 2 ];then
