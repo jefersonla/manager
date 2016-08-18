@@ -4,11 +4,13 @@ show_help(){
     printf "Usage:\n"
     printf "\t./manager-general.sh [option]\n"
     printf "\nOptions:\n"
-    printf "\tinstall [app_name]\tInstall applications\n" "$HOME"
-    printf "\thelp\t\tShow this help message\n"
+    printf "\tinstall [app_name]\tInstall application\n"
+    printf "\download [app_name]\tDownload application binarie\n"
+    printf "\thelp\t\t\tShow this help message\n"
     printf "\nApps available:\n"
-    printf "\tjava\tJava JDK with netbeans\n"
-    printf "\tmysql\tMysql Server\n"
+    printf "\tall\t\tAll applications below\n"
+    printf "\tjava\t\tJava JDK with netbeans\n"
+    printf "\tmysql\t\tMysql Server\n"
     printf "\tspring-ide\tSpring Tools IDE, Eclipse\n"
 }
 
