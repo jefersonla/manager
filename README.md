@@ -1,8 +1,8 @@
 # Manager
-## A script tool to install user wide applications on linux
+### A script tool to install user wide applications on linux
 
-### Developed by
+## Developed by
 @jefersonla - Jeferson Lima
 
-### Suport & Docs
+## Suport & Docs
 Coming soon...
