@@ -7,9 +7,9 @@ show_help(){
     printf "\tinstall [app_name]\tInstall applications\n" "$HOME"
     printf "\thelp\t\tShow this help message\n"
     printf "\nApps available:\n"
-    printf "\tjava\tJava JDK with netbeans"
-    printf "\tmysql\tMysql Server"
-    printf "\tspring-ide\tSpring Tools IDE, Eclipse"
+    printf "\tjava\tJava JDK with netbeans\n"
+    printf "\tmysql\tMysql Server\n"
+    printf "\tspring-ide\tSpring Tools IDE, Eclipse\n"
 }
 
 install_app(){
