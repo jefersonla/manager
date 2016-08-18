@@ -20,6 +20,8 @@ show_help(){
 }
 
 download_app(){
+    echo "Downloading java jdk with netbeans"
+    mkdir "$(pwd)/bin"
     wget -c -O "$(pwd)/bin/$INSTALLER_NAME" --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" "$JDK_NB_URL" || rm "$INSTALLER"
 }
 
@@ -31,14 +33,13 @@ fi
 case $1 in
     install)
         if [ ! -e "$(pwd)/bin" ] || [ ! -e "$(pwd)/bin/$INSTALLER_NAME" ];then
-            mkdir "$(pwd)/bin"
             download_app
         fi
+        echo "downloading java"
         "$INSTALLER"
         ;;
     download)
         if [ ! -e "$(pwd)/bin" ] || [ ! -e "$(pwd)/bin/$INSTALLER_NAME" ];then
-            mkdir "$(pwd)/bin"
             download_app
         fi
         ;;
