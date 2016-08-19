@@ -4,7 +4,7 @@ BASEDIR=$TARGET
 DATADIR=$TARGET/data
 PORT=9797
 VERSION=5.7.14
-DB_DATABASE=ufba
+DB_DATABASE=siges
 DB_USER=ufba
 DB_PASS=ufba
 MYSQL_PLATFORM="x86_64"
@@ -95,14 +95,14 @@ case $1 in
         if [ $# -eq 1 ]; then
             echo "Connecting with default settings"
         elif [ $# -eq 2 ];then
-            DB_USER=$1
+            DB_USER=$2
         elif [ $# -eq 3 ]; then
-            DB_USER=$1
-            DB_PASS=$2
+            DB_USER=$2
+            DB_PASS=$3
         elif [ $# -eq 4 ]; then
-            DB_USER=$1
-            DB_PASS=$2
-            PORT=$3
+            DB_USER=$2
+            DB_PASS=$3
+            PORT=$4
         else
             show_help
             exit 1

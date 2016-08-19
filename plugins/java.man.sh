@@ -23,6 +23,7 @@ download_app(){
     echo "Downloading java jdk with netbeans"
     mkdir "$(pwd)/bin"
     wget -c -O "$(pwd)/bin/$INSTALLER_NAME" --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" "$JDK_NB_URL" || rm "$INSTALLER"
+    chmod +x "$(pwd)/bin/$INSTALLER_NAME"
 }
 
 if [ $# -gt 1 ] || [ $# -eq 0 ];then
