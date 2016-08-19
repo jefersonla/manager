@@ -67,7 +67,7 @@ case $1 in
                 install_app java
                 install_app mysql
                 ;;
-            [a-z]+[a-z\-0-9]+)
+            +(a-z\-0-9))
                 if [ ! -e "$(pwd)/plugins/$2.man.sh" ];then
                     echo "Plugin not found!"
                     show_help
@@ -91,15 +91,12 @@ case $1 in
                 download_app java
                 download_app mysql
                 ;;
-            mysql)
-                download_app mysql
-                ;;
-            java)
-                download_app java
-                ;;
-            spring-ide)
-                download_app spring-ide
-                ;;
+            +(a-z\-0-9))
+                if [ ! -e "$(pwd)/plugins/$2.man.sh" ];then
+                    echo "Plugin not found!"
+                    show_help
+                    exit 1
+                fi
             *)
                 show_help
                 exit 1
