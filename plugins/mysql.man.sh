@@ -14,7 +14,7 @@ show_help(){
     printf "Manager for MYSQL Portable!\n"
     printf "Created by Jeferson Lima\n\n"
     printf "Usage:\n"
-    printf "\t./manager-mysql.sh [option] [user/port/password] [password] [database]\n"
+    printf "\t./mysql.man.sh [option] [user/port/password] [password] [database]\n"
     printf "\nOptions:\n"
     printf "\tinstall\t\t\t\tInstall mysql-portable in %s/mysql\n" "$HOME"
     printf "\trun [port]\t\t\tRun mysql daemon, the default port is %s in localhost\n" "$PORT"
@@ -23,7 +23,7 @@ show_help(){
     printf "\tconnect [user] [pass] [port]\tConnect with the specified user and password, default user\n"
     printf "\t\t\t\t\tis %s and default password is %s\n" "$DB_USER" "$DB_PASS"
     printf "\tchange-password [user] [pass]\tChange user password\n"
-    printf "\tdownload\t\t\t\tDownload binarie files"
+    printf "\tdownload\t\t\t\tDownload binarie files\n"
     printf "\thelp\t\t\t\tShow this help message\n"
 }
 

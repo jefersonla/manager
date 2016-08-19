@@ -12,10 +12,10 @@ show_help(){
     printf "Manager for Java JDK with Netbeans Portable!\n"
     printf "Created by Jeferson Lima\n\n"
     printf "Usage:\n"
-    printf "\t./manager-jdk.sh [option]\n"
+    printf "\t./java.man.sh [option]\n"
     printf "\nOptions:\n"
     printf "\tinstall\tInstall Java JDK\n" "$HOME"
-    printf "\tdownload\tDownload binaries for installation"
+    printf "\tdownload\tDownload binaries for installation\n"
     printf "\thelp\tShow this help message\n"
 }
 
