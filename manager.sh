@@ -14,14 +14,16 @@ show_help(){
     printf "\tspring-ide\tSpring Tools IDE, Eclipse\n"
 }
 
-install_app(){
-    if [ $# -ne 1 ];then
-        echo "App not specified"
+execute_routine(){
+    if [ $# -ne 3 ];then
+        echo "Routine specified wrong way"
         exit 1
     fi
     APP_NAME=$1
-    echo "Installing $APP_NAME..."
+    ROUTINE_TO_EXECUTE=$2
+    MESSAGE_TO_DISPLAY=$3
     DIR_NAME="$(pwd)/$APP_NAME.man"
+    echo "$MESSAGE_TO_DISPLAY $APP_NAME..."
     # If plugin is not prepared
     if [ ! -e "$DIR_NAME" ];then
         # Create plugin folder and copy plugin installer
@@ -31,7 +33,17 @@ install_app(){
         ln -s "$(pwd)/plugins/$APP_NAME.man.sh" "$DIR_NAME/$APP_NAME.man.sh"
     fi
     # Executine routine to install application
-    "$DIR_NAME/$APP_NAME.man.sh" install
+    cd "$DIR_NAME"
+    "$DIR_NAME/$APP_NAME.man.sh" "$ROUTINE_TO_EXECUTE"
+}
+
+install_app(){
+    if [ $# -ne 1 ];then
+        echo "App not specified"
+        exit 1
+    fi
+    APP_NAME=$1
+    execute_routine "$APP_NAME" install "Installing"
 }
 
 download_app(){
@@ -40,18 +52,7 @@ download_app(){
         exit 1
     fi
     APP_NAME=$1
-    echo "Configuring $APP_NAME..."
-    DIR_NAME="$(pwd)/$APP_NAME.man"
-    # If plugin is not prepared
-    if [ ! -e "$DIR_NAME" ];then
-        # Create plugin folder and copy plugin installer
-        mkdir "$DIR_NAME"
-        ln -s "$(pwd)/plugins/$APP_NAME.man.sh" "$DIR_NAME/$APP_NAME.man.sh"
-    elif [ ! -e "$DIR_NAME/$APP_NAME.man.sh" ];then
-        ln -s "$(pwd)/plugins/$APP_NAME.man.sh" "$DIR_NAME/$APP_NAME.man.sh"
-    fi
-    # Executine routine to configure application
-    "$DIR_NAME/$APP_NAME.man.sh" download
+    execute_routine "$APP_NAME" download "Configuring"
 }
 
 
