@@ -67,14 +67,12 @@ case $1 in
                 install_app java
                 install_app mysql
                 ;;
-            mysql)
-                install_app mysql
-                ;;
-            java)
-                install_app java
-                ;;
-            spring-ide)
-                install_app spring-ide
+            [a-z]+[a-z\-0-9]+)
+                if [ ! -e "$(pwd)/plugins/$2.man.sh" ];then
+                    show_help
+                    exit 1
+                fi
+                install_app $2
                 ;;
             *)
                 show_help
