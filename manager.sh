@@ -69,6 +69,7 @@ case $1 in
                 ;;
             [a-z]+[a-z\-0-9]+)
                 if [ ! -e "$(pwd)/plugins/$2.man.sh" ];then
+                    echo "Plugin not found!"
                     show_help
                     exit 1
                 fi
