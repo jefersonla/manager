@@ -23,10 +23,12 @@ install_app(){
     echo "Installing $APP_NAME..."
     DIR_NAME="$(pwd)/$APP_NAME.man"
     # If plugin is not prepared
-    if [ ! -e DIR_NAME ];then
+    if [ ! -e $DIR_NAME ];then
         # Create plugin folder and copy plugin installer
         mkdir "$DIR_NAME"
         ln -s "$(pwd)/plugins/$APP_NAME.man.sh" "$DIRNAME/"
+    elif [ ! -e "$DIRNAME/$APP_NAME.man.sh" ]
+        ln -s "$(pwd)/plugins/$APP_NAME.man.sh" "$DIRNAME/$APP_NAME.man.sh"
     fi
     # Executine routine to install application
     "$DIR_NAME/$APP_NAME.man.sh" install
@@ -41,9 +43,11 @@ download_app(){
     echo "Configuring $APP_NAME..."
     DIR_NAME="$(pwd)/$APP_NAME.man"
     # If plugin is not prepared
-    if [ ! -e DIR_NAME ];then
+    if [ ! -e $DIR_NAME ];then
         # Create plugin folder and copy plugin installer
         mkdir "$DIR_NAME"
+        ln -s "$(pwd)/plugins/$APP_NAME.man.sh" "$DIRNAME/$APP_NAME.man.sh"
+    elif [ ! -e "$DIRNAME/$APP_NAME.man.sh" ]
         ln -s "$(pwd)/plugins/$APP_NAME.man.sh" "$DIRNAME/$APP_NAME.man.sh"
     fi
     # Executine routine to configure application
